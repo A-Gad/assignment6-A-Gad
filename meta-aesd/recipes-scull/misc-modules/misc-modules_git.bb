@@ -15,7 +15,7 @@ INITSCRIPT_NAME = "S98misc-modules"
 INITSCRIPT_PARAMS = "defaults 98"
 
 EXTRA_OEMAKE += " -C ${STAGING_KERNEL_DIR} M=${S}/misc-modules"
-
+FILES:${PN} += "${sysconfdir}/init.d/S98misc-modules"
 do_install:append() {
     install -d ${D}${sysconfdir}/init.d
     install -m 0755 ${WORKDIR}/S98misc-modules ${D}${sysconfdir}/init.d/S98misc-modules

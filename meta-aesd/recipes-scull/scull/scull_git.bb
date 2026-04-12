@@ -15,6 +15,7 @@ INITSCRIPT_NAME = "S98scull"
 INITSCRIPT_PARAMS = "defaults 98"
 
 EXTRA_OEMAKE += " -C ${STAGING_KERNEL_DIR} M=${S}/scull"
+FILES:${PN} += "${sysconfdir}/init.d/S98scull"
 
 do_install:append() {
     install -d ${D}${sysconfdir}/init.d
