@@ -1,0 +1,28 @@
+#!/bin/sh
+
+mode="664"
+
+case "$1" in
+    start)
+        echo "Loading misc modules..."
+        modprobe hello
+        insmod /lib/modules/$(uname -r)/extra/faulty.ko
+
+        major=$(awk "\$2==\"faulty\" {print \$1}" /proc/devices)
+        rm -f /dev/faulty
+        mknod /dev/faulty c $major 0
+        chmod $mode /dev/faulty
+        ;;
+    stop)
+        echo "Unloading misc modules..."
+        rmmod faulty || exit 1
+        rmmod hello  || exit 1
+        rm -f /dev/faulty
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+
+exit 0
