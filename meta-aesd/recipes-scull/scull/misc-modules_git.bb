@@ -5,7 +5,7 @@ SRC_URI = "git://github.com/A-Gad/assignment7-A-Gad;protocol=https;branch=main"
 SRC_URI += "file://S98misc-modules"
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "fb28d7d40e71efb4007df9177cbfa4d9d3341208"
+SRCREV = "3d5a9f955f99872a15b296353a3c356b5f0963bb"
 
 S = "${WORKDIR}/git"
 
