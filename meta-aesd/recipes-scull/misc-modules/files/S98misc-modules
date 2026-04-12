@@ -15,7 +15,7 @@ case "$1" in
         ;;
     stop)
         echo "Unloading misc modules..."
-        rmmod faulty || exit 1
+        rmmod faulty 2> /dev/null || true
         rmmod hello  || exit 1
         rm -f /dev/faulty
         ;;
