@@ -1,0 +1,28 @@
+#!/bin/sh
+
+device="aesdchar"
+mode="664"
+
+case "$1" in
+    start)
+        echo "loading aesdchar module...."
+        modprobe aesdchar
+
+        major=$(awk "\$2==\"aesdchar\" {print \$1}" /proc/devices)
+        rm -rf /dev/${device}
+        mknod /dev/${device} c $major 0
+        chmod ${mode} /dev/${device}
+        ;;
+    stop)
+        echo "Unloading aesdchar module"
+
+        rmmod ${device} || exit 1
+        rm -f /dev/${device}
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+exit 0
+

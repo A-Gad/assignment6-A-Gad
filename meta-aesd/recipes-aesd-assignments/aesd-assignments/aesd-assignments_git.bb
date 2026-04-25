@@ -3,7 +3,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 SRC_URI = "git://github.com/A-Gad/assignment3-and-later-A-Gad.git;protocol=ssh;branch=master"
 
 PV = "1.0+git${SRCPV}"
-SRCREV = "9f814552ce0cafff12d9a57b8637fb22a210dd24"
+SRCREV = "e7c8438749eea1702c28194335c57c5a7da59aad"
 
 inherit update-rc.d
 INITSCRIPT_PARAMS = "start 99 5 2 . stop 20 0 1 6 ."
@@ -13,6 +13,7 @@ S = "${WORKDIR}/git/server"
 
 FILES:${PN} += "${bindir}/aesdsocket ${sysconfdir}/init.d/aesdsocket-start-stop"
 TARGET_LDFLAGS += "-pthread -lrt"
+TARGET_CFLAGS += "-DUSE_AESD_CHAR_DEVICE=1"
 
 do_configure () {
 	:
